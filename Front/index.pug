@@ -1,0 +1,82 @@
+html
+	body
+		.container(ng-app='myApp', ng-controller='namesCtrl').crud-table
+			.clearfix
+				.form-inline.pull-left
+					button.btn.btn-success(ng-click='addUser()')
+						span.glyphicon.glyphicon-plus 
+						| Add more user
+				.form-inline.pull-right
+					| Search by name: 
+					.form-group
+						input(type='text', ng-model='searchName', placeholder='Type name to search').form-control
+			table.table.table-striped
+				thead
+					tr
+						th(ng-click="orderBy('name')") Name
+						th(ng-click="orderBy('country')") Country
+						th(ng-click="orderBy('salary')") Salary
+						th(ng-click="orderBy('email')") Email
+						th
+						th
+				tbody.text-center
+					tr(ng-repeat="user in resultUser = (users | filter: {'name': searchName}) | orderBy: order")
+						td {{user.name}} 
+						td {{user.country}} 
+						td {{user.salary}} 
+						td {{ user.email }}
+						td
+							button.btn.btn-primary(ng-click='editUser(user)') Edit
+						td 
+							button.btn.btn-danger(ng-click='deleteUser(user)') Delete
+					tr.text-left
+						td(colspan=2) 
+							b Total 
+						td.text-center {{ resultUser | totalSalary:'salary' }}
+						td(colspan=3)
+			.crude-form__wrapper(ng-show='triggerForm')
+				h3(ng-show='editForm') Edit user
+				h3(ng-show='addForm') Add user
+				form(name='userForm', ng-model='userForm')
+					.form-group
+						label(for='name') Name
+						input#editName.form-control(
+							type='text', 
+							name='name', 
+							ng-model='crudFormName', 
+							placeholder='Edit name', 
+							required
+						)
+						.form-alert.alert.alert-danger(ng-show='userForm.name.$invalid && userForm.name.$touched') Please input name
+					.form-group
+						label(for='country') Country
+						input#editCounty.form-control(
+							type='text', 
+							name='country',
+							ng-model='crudFormCountry', 
+							placeholder='Edit country',
+							required
+							)
+						.form-alert.alert.alert-danger(ng-show='userForm.country.$invalid && userForm.country.$touched') Please input user country
+					.form-group
+						label(for='salary') Salary
+						input#editSalary.form-control(type='number', name='salary', ng-model='crudFormSalary', placeholder='Edit salary', min="1", required)
+						.form-alert.alert.alert-danger(ng-show='userForm.salary.$invalid && userForm.salary.$touched')
+							span(ng-show='userForm.salary.$error.number') Please input valid number
+							span(ng-show='userForm.salary.$error.min') Please input salary greater than 1
+							span(ng-show='userForm.salary.$error.required') Please input salary
+					.form-group
+						label(for='email') Email
+						input#editEmail.form-control(type='email', name='email', ng-model='crudFormEmail', ng-change='checkEmail(editUserId)', placeholder='Edit email', required, min="1")
+					.form-alert.alert.alert-danger(ng-show='userForm.email.$invalid && userForm.email.$touched')
+						span(ng-show='userForm.email.$error.email') Please input valid email
+						span(ng-show='userForm.email.$error.required') Please input email	
+					.form-alert.alert.alert-danger(ng-show='emailExisted')   This email has been registerd by other user
+					
+					button(ng-click='saveEdit(editUserId)', ng-disabled='userForm.$invalid || emailExisted').btn.btn-primary 
+						i.glyphicon.glyphicon-pencil 
+						| Save change 
+					
+					button(ng-click='triggerForm = false').btn.btn-primary 
+						| Cancel						
+						
