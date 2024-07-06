@@ -4,12 +4,15 @@
     private $nom;
     private $prenom;
     private $prix_cours;
+    private $db;
 
-    public function __constructor($id,$nom,$prenom,$prix_cours){
-      this->$id = $id;
-      this->$nom = $nom;
-      this->$prenom = $prenom;
-      this->$prix_cours = $prix_cours;
+    public function __constructor($id,$nom,$prenom,$prix_cours,$db){
+      $this->$id = $id;
+      $this->$nom = $nom;
+      $this->$prenom = $prenom;
+      $this->$prix_cours = $prix_cours;
+
+      $this->$db = new PDO('mysql:host=localhost;dbname=gym',"root","");
     }
       // Getter and Setter for id
     public function getId() {
