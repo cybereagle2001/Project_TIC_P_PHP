@@ -6,14 +6,17 @@ class Club{
   private $numero_tel;
   private $heure_ouverture;
   private $heure_fermeture;
+  private $db;
 
-    public function __construct($id_club, $nom_club, $adresse, $numero_tel, $heure_ouverture, $heure_fermeture) {
+    public function __construct($id_club, $nom_club, $adresse, $numero_tel, $heure_ouverture, $heure_fermeture,$db) {
         $this->id_club = $id_club;
         $this->nom_club = $nom_club;
         $this->adresse = $adresse;
         $this->numero_tel = $numero_tel;
         $this->heure_ouverture = $heure_ouverture;
         $this->heure_fermeture = $heure_fermeture;
+
+        $this->$db = new PDO('mysql:host=localhost;dbname=gym',"root","");
     }
       // Getter and Setter for id_club
     public function getIdClub() {

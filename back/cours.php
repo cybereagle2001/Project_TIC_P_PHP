@@ -4,38 +4,41 @@ class cours{
   private $nom_cours;
   private $duration;
   private $type;
+  private $db;
 
-  public function __construct($id_cours,$nom_cours,$duration,$type){
-    this->$id_cours = $id_cours;
-    this->$nom_cours = $nom_cours;
-    this->$duration = $duration;
-    this->$type = $type;
+  public function __construct($id_cours,$nom_cours,$duration,$type,$db){
+    $this->$id_cours = $id_cours;
+    $this->$nom_cours = $nom_cours;
+    $this->$duration = $duration;
+    $this->$type = $type;
+
+    $this->$db = new PDO('mysql:host=localhost;dbname=gym',"root","");
   }
 
   // define the getters and setters 
   public function getIdCours(){
-    return this->$id_cours;
+    return $this->$id_cours;
   }
   public function setIdCours($id){
-    this->$id_cours = $id;
+    $this->$id_cours = $id;
   }
   public function getNomCours($nom_cours){
-    return this->$nom_cours;
+    return $this->$nom_cours;
   }
   public function setNomCours($nom_cours){
-    this->$nom_cours = $nom_cours;
+    $this->$nom_cours = $nom_cours;
   }
   public function setDuration($duration){
-    this->$duration = $duration;
+    $this->$duration = $duration;
   }
   public function getDuration($duration){
-    return this->$duration;
+    return $this->$duration;
   }
   public function getType($type){
-    return this->$type;
+    return $this->$type;
   }
   public function setType($type){
-    this->$type = $type;
+    $this->$type = $type;
   }
 }
 ?>

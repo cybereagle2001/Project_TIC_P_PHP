@@ -5,12 +5,14 @@
   private $capacity;
   private $salle_type;
 
+  private $db;
 
-  public function __construct($id_salle,$nom_salle,$capacity,$salle_type){
-    this->$id_salle = $id_salle;
-    this->$nom_salle = $nom_salle;
-    this->$capacity = $capacity;
-    this->$salle_type = $salle_type;
+  public function __construct($id_salle,$nom_salle,$capacity,$salle_type,$db){
+    $this->$id_salle = $id_salle;
+    $this->$nom_salle = $nom_salle;
+    $this->$capacity = $capacity;
+    $this->$salle_type = $salle_type;
+    $this->$db = new PDO('mysql:host=localhost;dbname=gym',"root","");
   }
     // Getter and Setter for id_salle
     public function getIdSalle() {
