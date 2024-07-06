@@ -13,18 +13,18 @@ USE GYM;
 -- Attributes:
 --  - id_club: Unique identifier for each club (Primary Key)
 --  - nom_club: Name of the club
---  - address_club: Address of the club
---  - phone_club: Contact phone number of the club
---  - closing_time: Closing time of the club
---  - opening_time: Opening time of the club
+--  - adresse: Address of the club
+--  - numero_tel: Contact phone number of the club
+--  - heure_ouverture: Opening time of the club
+--  - heure_fermeture: Closing time of the club
 --  - created_at: Timestamp when the record was created
 CREATE TABLE IF NOT EXISTS club (
     id_club INT AUTO_INCREMENT PRIMARY KEY,
     nom_club VARCHAR(255) NOT NULL,
-    address_club VARCHAR(255) NOT NULL,
-    phone_club VARCHAR(20) NOT NULL,
-    closing_time TIME,
-    opening_time TIME,
+    adresse VARCHAR(255) NOT NULL,
+    numero_tel VARCHAR(20) NOT NULL,
+    heure_ouverture TIME,
+    heure_fermeture TIME,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -64,15 +64,15 @@ CREATE TABLE IF NOT EXISTS cours (
 -- 🧑‍🏫 Create the coach table
 -- 📋 The coach table stores information about the coaches working at the gym.
 -- Attributes:
---  - id_coach: Unique identifier for each coach (Primary Key)
---  - nom_coach: Last name of the coach
---  - prenom_coach: First name of the coach
---  - hour_pay: Hourly pay rate for the coach
+--  - id: Unique identifier for each coach (Primary Key)
+--  - nom: Last name of the coach
+--  - prenom: First name of the coach
+--  - prix_cours: Hourly pay rate for the coach
 CREATE TABLE IF NOT EXISTS coach (
-    id_coach INT AUTO_INCREMENT PRIMARY KEY,
-    nom_coach VARCHAR(255) NOT NULL,
-    prenom_coach VARCHAR(255) NOT NULL,
-    hour_pay DECIMAL(10, 2) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    prenom VARCHAR(255) NOT NULL,
+    prix_cours DECIMAL(10, 2) NOT NULL
 );
 
 -- 📅 Create the crenaux join table
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS crenaux (
     id_salle INT,
     start_time DATETIME NOT NULL,
     duration INT NOT NULL,
-    FOREIGN KEY (id_coach) REFERENCES coach(id_coach),
+    FOREIGN KEY (id_coach) REFERENCES coach(id),
     FOREIGN KEY (id_cours) REFERENCES cours(id_cours),
     FOREIGN KEY (id_salle) REFERENCES salle(id_salle)
 );
