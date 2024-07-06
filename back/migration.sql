@@ -99,3 +99,60 @@ CREATE TABLE IF NOT EXISTS crenaux (
 );
 
 -- 🎉 Your GYM database is now set up and ready to use! 🎉
+
+
+
+-- Insert sample data into the club table
+INSERT INTO club (nom_club, adresse, numero_tel, heure_ouverture, heure_fermeture) VALUES
+('Fitness World', '123 Main St', '123-456-7890', '06:00:00', '22:00:00'),
+('Gym Pro', '456 Elm St', '234-567-8901', '07:00:00', '23:00:00'),
+('Health Hub', '789 Oak St', '345-678-9012', '05:00:00', '21:00:00'),
+('Workout Zone', '101 Pine St', '456-789-0123', '08:00:00', '20:00:00'),
+('Active Life', '202 Cedar St', '567-890-1234', '06:00:00', '22:00:00'),
+('Fitness First', '303 Birch St', '678-901-2345', '06:00:00', '22:00:00'),
+('Total Fitness', '404 Maple St', '789-012-3456', '05:30:00', '22:30:00'),
+('Ultimate Gym', '505 Walnut St', '890-123-4567', '07:00:00', '23:00:00');
+
+-- Insert sample data into the salle table
+INSERT INTO salle (nom_salle, capacity, type, id_club) VALUES
+('RPM Room', 20, 'rpm', 1),
+('Pool Area', 50, 'piscine', 1),
+('Yoga Studio', 30, 'cours', 2),
+('CrossFit Box', 25, 'cross_fit', 2),
+('Spinning Room', 20, 'rpm', 3),
+('Swimming Pool', 50, 'piscine', 3),
+('Aerobics Hall', 40, 'cours', 4),
+('CrossFit Zone', 25, 'cross_fit', 4);
+
+-- Insert sample data into the cours table
+INSERT INTO cours (nom_cours, duration, type) VALUES
+('RPM Beginners', 60, 'rpm'),
+('Advanced RPM', 45, 'rpm'),
+('Aqua Aerobics', 60, 'piscine'),
+('Swimming Lessons', 45, 'piscine'),
+('Yoga Basics', 60, 'cours'),
+('Power Yoga', 75, 'cours'),
+('CrossFit Intro', 60, 'cross_fit'),
+('Advanced CrossFit', 90, 'cross_fit');
+
+-- Insert sample data into the coach table
+INSERT INTO coach (nom, prenom, prix_cours) VALUES
+('Smith', 'John', 50.00),
+('Doe', 'Jane', 55.00),
+('Brown', 'Charlie', 60.00),
+('Johnson', 'Chris', 65.00),
+('Miller', 'Pat', 70.00),
+('Davis', 'Alex', 75.00),
+('Wilson', 'Taylor', 80.00),
+('Moore', 'Morgan', 85.00);
+
+-- Insert sample data into the crenaux table
+INSERT INTO crenaux (id_coach, id_cours, id_salle, start_time, duration) VALUES
+(1, 1, 1, '2024-07-07 09:00:00', 60),
+(2, 2, 1, '2024-07-07 11:00:00', 45),
+(3, 3, 2, '2024-07-07 08:00:00', 60),
+(4, 4, 2, '2024-07-07 10:00:00', 45),
+(5, 5, 3, '2024-07-07 07:00:00', 60),
+(6, 6, 3, '2024-07-07 09:00:00', 75),
+(7, 7, 4, '2024-07-07 06:00:00', 60),
+(8, 8, 4, '2024-07-07 08:00:00', 90);
