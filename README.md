@@ -1,2 +1,7 @@
-# Project_TIC_P_PHP
-This is the project of PHP TIC-1-P
+# GESTION DE SALLE DE SPORT 
+
+## Porject done by
+
+Oussama Ben Hadj Dahman
+Amine Jlassi
+Adem Belghith
